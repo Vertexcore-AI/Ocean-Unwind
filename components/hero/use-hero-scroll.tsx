@@ -13,16 +13,16 @@ export function useHeroScroll(typingComplete: boolean) {
     const unsubscribe = scrollY.on("change", (latest) => {
       const viewportHeight = window.innerHeight
 
-      // ACT 2: First scroll (50px - 1 viewport)
-      if (latest > 50 && latest <= viewportHeight && currentAct === 1) {
+      // ACT 2: First scroll (Starts appearing immediately - 50px to 0.6 viewport)
+      if (latest > 50 && latest <= viewportHeight * 0.6 && currentAct === 1) {
         setCurrentAct(2)
       }
-      // ACT 3: Second scroll (1-2 viewports)
-      else if (latest > viewportHeight && latest <= viewportHeight * 2 && currentAct === 2) {
+      // ACT 3: "One Scroll" later (0.6 to 1.5 viewports - United)
+      else if (latest > viewportHeight * 0.6 && latest <= viewportHeight * 1.5 && currentAct === 2) {
         setCurrentAct(3)
       }
-      // ACT 4: Third scroll (beyond 2 viewports)
-      else if (latest > viewportHeight * 2 && currentAct === 3) {
+      // ACT 4: Leave hero (beyond 1.5 viewports)
+      else if (latest > viewportHeight * 1.5 && currentAct === 3) {
         setCurrentAct(4)
       }
     })

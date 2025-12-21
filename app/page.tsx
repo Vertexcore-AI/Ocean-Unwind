@@ -5,39 +5,20 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Instagram, Youtube, Facebook, Linkedin, ArrowRight, Search } from "lucide-react"
 import { HeroAnimation } from "@/components/hero"
+import { FoundersSection } from "@/components/founders/founders-section"
+import { MissionSection } from "@/components/mission/mission-section"
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-ocean-cream">
       {/* Hero Section */}
       <HeroAnimation />
- 
+
+      {/* Founders / Organization Introduction */}
+      <FoundersSection />
+
       {/* Mission Section */}
-      <section id="mission" className="bg-ocean-cream py-24">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl">
-            <div>
-              <h2 className="text-5xl md:text-6xl font-bold text-ocean-dark mb-6 leading-tight">Our mission</h2>
-              <h3 className="text-3xl font-bold text-ocean-dark mb-4">Create science-based solution for ocean</h3>
-              <p className="text-foreground/70 leading-relaxed">
-                To blend science, art, and community engagement to inspire deep-sea awareness in children and youth,
-                empower local communities with knowledge, advocate for the protection of deep-sea ecosystems.
-              </p>
-            </div>
-            <div className="bg-white/50 p-8 rounded-2xl">
-              <p className="text-foreground/80 leading-relaxed mb-4">
-                We take on the greatest ocean conservation challenges facing our planet. Through education, research,
-                and advocacy, we work to protect marine biodiversity and raise awareness about the critical importance
-                of healthy oceans.
-              </p>
-              <p className="text-foreground/80 leading-relaxed">
-                Our approach combines cutting-edge science with artistic storytelling to create meaningful connections
-                between people and the ocean.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MissionSection />
 
       {/* Conference Section */}
       <section className="bg-white py-24">
@@ -376,6 +357,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   )
 }

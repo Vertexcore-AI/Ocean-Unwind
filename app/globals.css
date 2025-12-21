@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@layer utilities {
+    .animate-slot-machine {
+        animation: slot-machine 8s infinite cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slot-machine {
+        0%, 20% { transform: translateY(0%); }
+        25%, 45% { transform: translateY(-100%); }
+        50%, 70% { transform: translateY(-200%); }
+        75%, 95% { transform: translateY(-300%); }
+        100% { transform: translateY(0%); } 
+    }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -156,18 +169,45 @@
 
 @layer utilities {
   .text-glow-subtle {
-    text-shadow: 0 0 20px oklch(0.6 0.2 195 / 0.5),
-                 0 0 40px oklch(0.6 0.2 195 / 0.3);
+    text-shadow: 0 0 10px oklch(0.6 0.2 195 / 0.3),
+                 0 0 20px oklch(0.6 0.2 195 / 0.2);
   }
 
   .text-glow-purple {
     text-shadow: 0 0 20px oklch(0.65 0.25 300 / 0.6),
                  0 0 40px oklch(0.65 0.25 300 / 0.4);
+    animation: glow-pulse-purple 4s ease-in-out infinite;
   }
 
   .text-glow-enhanced {
-    text-shadow: 0 0 30px oklch(0.6 0.2 195 / 0.7),
-                 0 0 60px oklch(0.6 0.2 195 / 0.5),
-                 0 0 90px oklch(0.6 0.2 195 / 0.3);
+    text-shadow: 0 0 10px oklch(0.6 0.2 195 / 0.8),
+                 0 0 30px oklch(0.6 0.2 195 / 0.6),
+                 0 0 60px oklch(0.6 0.2 195 / 0.4),
+                 0 0 90px oklch(0.6 0.2 195 / 0.2);
+    animation: glow-pulse-cyan 4s ease-in-out infinite;
+  }
+}
+
+@keyframes glow-pulse-cyan {
+  0%, 100% {
+    text-shadow: 0 0 20px oklch(0.6 0.2 195 / 0.6),
+                 0 0 40px oklch(0.6 0.2 195 / 0.4),
+                 0 0 80px oklch(0.6 0.2 195 / 0.2);
+  }
+  50% {
+    text-shadow: 0 0 30px oklch(0.6 0.2 195 / 0.8),
+                 0 0 60px oklch(0.6 0.2 195 / 0.6),
+                 0 0 100px oklch(0.6 0.2 195 / 0.4);
+  }
+}
+
+@keyframes glow-pulse-purple {
+  0%, 100% {
+    text-shadow: 0 0 20px oklch(0.65 0.25 300 / 0.6),
+                 0 0 40px oklch(0.65 0.25 300 / 0.4);
+  }
+  50% {
+    text-shadow: 0 0 30px oklch(0.65 0.25 300 / 0.8),
+                 0 0 60px oklch(0.65 0.25 300 / 0.6);
   }
 }

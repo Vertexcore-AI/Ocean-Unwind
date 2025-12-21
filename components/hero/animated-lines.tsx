@@ -1,14 +1,16 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, MotionValue } from "framer-motion"
 
 interface AnimatedLinesProps {
   lines: string[]
   currentAct: 1 | 2 | 3 | 4
   className?: string
+  textScale?: MotionValue<number>
+  textOpacity?: MotionValue<number>
 }
 
-export function AnimatedLines({ lines, currentAct, className = "" }: AnimatedLinesProps) {
+export function AnimatedLines({ lines, currentAct, className = "", textScale, textOpacity }: AnimatedLinesProps) {
   // Top 3 lines variants (fade out in ACT 2, stay hidden in ACT 3-4)
   const topLinesVariants = {
     act1: { opacity: 1, y: 0 },
@@ -29,12 +31,12 @@ export function AnimatedLines({ lines, currentAct, className = "" }: AnimatedLin
   const oceanWordVariants = {
     act1: { y: 0, x: 0 },
     act2: {
-      y: -200,
+      y: -100,
       x: -200, // Move 200px left
       transition: { duration: 1, ease: [0.43, 0.13, 0.23, 0.96] },
     },
     act3: { y: -100, x: -230 },
-    act4: { y: -20, x: -230 }, // Stay in position
+    act4: { y: -110, x: -250 }, // Stay in position
   }
 
   // "UNMINED" word variants - scroll-float animation
@@ -52,7 +54,7 @@ export function AnimatedLines({ lines, currentAct, className = "" }: AnimatedLin
         opacity: { duration: 0.8 },
       },
     },
-    act4: { opacity: 1, y: -100, x: 170, scale: 1 }, // Stay in position
+    act4: { opacity: 1, y: -200, x: 150, scale: 1 }, // Stay in position
   }
 
   // Get appropriate glow class based on act
@@ -69,7 +71,10 @@ export function AnimatedLines({ lines, currentAct, className = "" }: AnimatedLin
   }
 
   return (
-    <div className={className}>
+    <motion.div
+      className={className}
+      style={{ scale: textScale, opacity: textOpacity }}
+    >
       {/* Line 1: WE ARE TRYING TO PROTECT */}
       <motion.div variants={topLinesVariants} animate={getActKey()}>
         {lines[0]}
@@ -111,7 +116,7 @@ export function AnimatedLines({ lines, currentAct, className = "" }: AnimatedLin
       )}
 
       {/* Logo - appears in ACT 4 */}
-      {currentAct === 4 && (
+      {/* {currentAct === 4 && (
         <motion.img
           src="/logo.jpg"
           alt="Ocean Unmined Logo"
@@ -120,7 +125,7 @@ export function AnimatedLines({ lines, currentAct, className = "" }: AnimatedLin
           transition={{ duration: 1, delay: 1 }}
           className="mx-auto mt-8 w-48 h-48 object-contain"
         />
-      )}
-    </div>
+      )} */}
+    </motion.div>
   )
 }
