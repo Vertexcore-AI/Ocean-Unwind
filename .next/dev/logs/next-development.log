@@ -1,0 +1,13 @@
+[00:00:42.177] Server  WARN     ⚠ "Found lockfile missing swc dependencies," "patching..."
+[00:00:42.777] Server  ERROR    ⨯ Failed to patch lockfile, please try uninstalling and reinstalling next in this workspace
+[00:00:42.810] Server  ERROR   E:\Herd\Ocean Unwind\node_modules\next\dist\lib\helpers\get-registry.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:42.815] Server  ERROR   E:\Herd\Ocean Unwind\node_modules\next\dist\lib\patch-incorrect-lockfile.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:43.193] Server  ERROR   E:\Herd\Ocean Unwind\node_modules\next\dist\lib\helpers\get-registry.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:43.213] Server  ERROR   E:\Herd\Ocean Unwind\node_modules\next\dist\lib\patch-incorrect-lockfile.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:00:43.228] Server  ERROR   Error: Failed to get registry from "pnpm".
+[00:00:54.897] Server  LOG      ✓ Ready in 38.2s
+[00:00:57.940] Server  LOG      ○ Compiling / ...
+[00:02:31.248] Server  ERROR   E:\Herd\Ocean Unwind\.next\dev\server\chunks\ssr\_67e3492e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:31.307] Server  ERROR    ⨯ ReferenceError: window is not defined
+[00:02:31.581] Server  ERROR   E:\Herd\Ocean Unwind\.next\dev\server\chunks\ssr\_67e3492e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:02:31.659] Server  ERROR    ⨯ ReferenceError: window is not defined
