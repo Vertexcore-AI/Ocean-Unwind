@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -9,6 +10,11 @@ import { FoundersSection } from "@/components/founders/founders-section"
 import { MissionSection } from "@/components/mission/mission-section"
 
 export default function Home() {
+  useEffect(() => {
+    // Scroll to top on page load/refresh
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="min-h-screen bg-ocean-cream">
       {/* Hero Section */}

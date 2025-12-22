@@ -10,7 +10,7 @@ export function FoundersSection() {
     const containerRef = useRef<HTMLDivElement>(null)
 
     return (
-        <section ref={containerRef} className="relative min-h-[250vh] bg-ocean-dark overflow-hidden text-white">
+        <section ref={containerRef} className="relative min-h-[0vh] bg-ocean-dark overflow-hidden text-white">
             {/* Animated Background Layer */}
             <div className="absolute inset-0 z-0">
                 <motion.div

@@ -1,103 +1,145 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { ScrollReveal } from "@/components/ui/scroll-reveal"
+import { useRef, useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import Ribbons from "@/components/ui/ribbons"
+import FadeContent from "@/components/ui/fade-content"
+
+// PrismWord component for colorful text
+function PrismWord({ color, children }: { color: string; children: React.ReactNode }) {
+    return <span className={color}>{children}</span>
+}
 
 export function MissionSection() {
     return (
-        <section className="relative min-h-[300vh] bg-black text-white py-32 overflow-hidden">
-            {/* Background Decoration (Deep Void) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-ocean-dark to-black pointer-events-none" />
+        <section className="relative bg-black text-white py-0 overflow-hidden">
+            {/* Ocean Ribbons Background */}
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+                <Ribbons
+                    colors={['#22d3ee', '#3b82f6', '#8b5cf6', '#06b6d4']}
+                    baseThickness={20}
+                    enableFade={true}
+                    backgroundColor={[0, 0, 0, 0]}
+                />
+            </div>
 
-            {/* 1. Main Mission Statement */}
-            <div className="container mx-auto px-6 relative z-10 min-h-[100vh] flex flex-col justify-center items-center text-center">
-                <h2 className="text-4xl md:text-7xl font-bold mb-12 max-w-5xl leading-tight">
-                    <span className="text-gray-400 block text-lg md:text-2xl mb-4 font-normal tracking-widest uppercase">Our Mission</span>
-                    <div className="flex flex-wrap justify-center gap-x-3 text-4xl md:text-6xl font-light text-gray-200 leading-tight max-w-4xl">
-                        <ScrollReveal>To Blend</ScrollReveal>
+            {/* Background Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-ocean-dark to-black pointer-events-none z-[1]" />
+
+            {/* Content Container */}
+            <div className="relative z-10 container mx-auto px-6 space-y-20">
+
+                {/* Mission Header */}
+                <FadeContent blur={true} duration={1500} threshold={0.2}>
+                    <div className="text-center">
+                        <h2 className="text-gray-400 text-4xl md:text-6xl mb-12 font-bold tracking-widest uppercase">
+                            Our Mission
+                        </h2>
+                    </div>
+                </FadeContent>
+
+                {/* Mission Statement */}
+                <FadeContent blur={true} duration={1200} delay={300} threshold={0.2}>
+                    <div className="flex flex-wrap justify-center gap-x-3 text-4xl md:text-6xl font-light text-gray-200 leading-tight max-w-4xl mx-auto backdrop-blur-sm bg-black/10 p-8 rounded-3xl text-center">
+                        <span>To Blend</span>
                         <PrismWord color="text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">Science,</PrismWord>
                         <PrismWord color="text-purple-400 drop-shadow-[0_0_15px_rgba(192,132,252,0.5)]">Art,</PrismWord>
-                        <ScrollReveal>and</ScrollReveal>
+                        <span>and</span>
                         <PrismWord color="text-pink-400 drop-shadow-[0_0_15px_rgba(244,114,182,0.5)]">Community</PrismWord>
-                        <ScrollReveal>Engagement to...</ScrollReveal>
+                        <span>Engagement to...</span>
                     </div>
+                </FadeContent>
 
-                    {/* 2. Bubble Bullet Points */}
-                    <div className="container mx-auto px-6 relative z-10 min-h-[100vh] flex flex-col justify-center max-w-4xl space-y-24">
+                {/* Mission Points */}
+                <div className="max-w-4xl mx-auto space-y-8">
+                    <FadeContent blur={true} duration={1000} delay={0} threshold={0.3}>
                         <MissionPoint
                             text="Inspire deep-sea awareness in children and youth"
                             color="bg-cyan-400"
                         />
+                    </FadeContent>
+
+                    <FadeContent blur={true} duration={1000} delay={200} threshold={0.3}>
                         <MissionPoint
                             text="Empower local communities with knowledge"
                             color="bg-purple-400"
                         />
+                    </FadeContent>
+
+                    <FadeContent blur={true} duration={1000} delay={400} threshold={0.3}>
                         <MissionPoint
                             text="Advocate for the protection of deep-sea ecosystems"
                             color="bg-blue-500"
                         />
+                    </FadeContent>
+
+                    <FadeContent blur={true} duration={1000} delay={600} threshold={0.3}>
                         <MissionPoint
                             text="Counter the rising threat of deep-seabed mining"
                             color="bg-red-500"
                         />
-                    </div>
+                    </FadeContent>
+                </div>
 
-                    {/* 3. Slot Machine Word Cycler */}
-                    <div className="container mx-auto px-6 relative z-10 min-h-[100vh] flex flex-col justify-center items-center">
-                        <h3 className="text-3xl md:text-5xl font-light text-center">
+                {/* Word Cycler */}
+                <FadeContent blur={true} duration={1200} delay={800} threshold={0.2}>
+                    <div className="text-center">
+                        <h3 className="text-3xl md:text-5xl font-light backdrop-blur-sm bg-black/10 p-8 rounded-3xl inline-block">
                             We work through
-                            <div className="h-[1.2em] overflow-hidden inline-block align-bottom ml-4 text-cyan-300 font-bold relative">
-                                <WordCycler words={["Education", "Storytelling", "Artistic Expression", "Global Partnerships"]} />
-                            </div>
+                            <WordCycler words={["Education", "Storytelling", "Artistic Expression", "Global Partnerships"]} />
                         </h3>
                     </div>
-                </section>
-                )
+                </FadeContent>
+
+            </div>
+        </section>
+    )
 }
 
-                function MissionPoint({text, color}: {text: string, color: string }) {
+function MissionPoint({ text, color }: { text: string; color: string }) {
     return (
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    className="flex items-center gap-8 group"
-                >
-                    {/* Glowing Bubble Bullet */}
-                    <div className={cn("w-6 h-6 rounded-full shrink-0 relative", color)}>
-                        <div className={cn("absolute inset-0 rounded-full animate-ping opacity-20", color)} />
-                        <div className="absolute inset-0 rounded-full shadow-[0_0_20px_currentColor] opacity-50" />
-                    </div>
+        <div className="flex items-center gap-8 group backdrop-blur-sm bg-black/10 p-6 rounded-2xl">
+            {/* Glowing Bubble Bullet */}
+            <div className={cn("w-6 h-6 rounded-full shrink-0 relative", color)}>
+                <div className={cn("absolute inset-0 rounded-full animate-ping opacity-20", color)} />
+                <div className="absolute inset-0 rounded-full shadow-[0_0_20px_currentColor] opacity-50" />
+            </div>
 
-                    {/* Text */}
-                    <p className="text-2xl md:text-4xl font-light leading-relaxed text-gray-200 group-hover:text-white transition-colors">
-                        {text}
-                    </p>
-                </motion.div>
-                )
+            {/* Text */}
+            <p className="text-2xl md:text-4xl font-light leading-relaxed text-gray-200 group-hover:text-white transition-colors">
+                {text}
+            </p>
+        </div>
+    )
 }
 
-                // Scroll-driven word cycler
-                function WordCycler({words}: {words: string[] }) {
-    // Scroll-driven word cycler
-    const containerRef = useRef<HTMLDivElement>(null)
-                    const {scrollYProgress} = useScroll({
-                        target: containerRef,
-                    offset: ["start end", "end start"]
-    })
+// Auto-cycling word animation
+function WordCycler({ words }: { words: string[] }) {
+    const [currentIndex, setCurrentIndex] = useState(0)
 
-                    const y = useTransform(scrollYProgress, [0.3, 0.7], ["0%", `-${(words.length - 1) * 100}%`])
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % words.length)
+        }, 2500) // Change word every 2.5 seconds
 
-                    return (
-                    <div ref={containerRef} className="h-[1.2em] overflow-hidden inline-block align-bottom ml-4 text-cyan-300 font-bold relative">
-                        <motion.div style={{ y }} className="flex flex-col">
-                            {words.map((word, i) => (
-                                <span key={i} className="block h-[1.2em]">{word}</span>
-                            ))}
-                        </motion.div>
-                    </div>
-                    )
+        return () => clearInterval(interval)
+    }, [words.length])
+
+    return (
+        <span className="inline-block align-bottom ml-4 text-cyan-300 font-bold relative min-w-[200px] md:min-w-[300px]">
+            <AnimatePresence mode="wait">
+                <motion.span
+                    key={currentIndex}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="inline-block"
+                >
+                    {words[currentIndex]}
+                </motion.span>
+            </AnimatePresence>
+        </span>
+    )
 }
