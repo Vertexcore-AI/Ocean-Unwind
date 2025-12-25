@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Playfair_Display, Bungee } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
@@ -44,7 +45,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} ${bungee.variable} font-sans antialiased`}>
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
         <Analytics />
       </body>
     </html>

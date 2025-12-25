@@ -33,8 +33,10 @@ export function FoundersSection() {
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black/80" />
             </div>
 
-            {/* Floating Bubbles Overlay */}
-            <FloatingBubbles />
+            {/* Floating Bubbles Overlay - Throughout Section */}
+            <div className="absolute inset-0 z-[5] pointer-events-none">
+                <FloatingBubbles />
+            </div>
 
             {/* Content Container */}
             <div className="relative z-10 container mx-0 px-6 py-32 space-y-48">
@@ -148,8 +150,6 @@ export function FoundersSection() {
                     </div>
                 </div>
 
-                {/* Spacer for bottom scroll */}
-                <div className="h-[20vh]" />
             </div>
         </section>
     )
