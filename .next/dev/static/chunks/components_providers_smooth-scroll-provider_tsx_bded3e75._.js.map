@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///E:/Herd/Ocean%20Unwind/components/providers/smooth-scroll-provider.tsx"],"sourcesContent":["'use client'\n\nimport { ReactLenis } from 'lenis/react'\nimport type { ReactNode } from 'react'\n\ninterface SmoothScrollProviderProps {\n  children: ReactNode\n}\n\nexport function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {\n  return (\n    <ReactLenis\n      root\n      options={{\n        duration: 1.2,\n        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),\n        smoothWheel: true,\n        touchMultiplier: 2,\n        infinite: false,\n        wheelMultiplier: 1,\n        lerp: 0.1,\n        syncTouch: true,\n        syncTouchLerp: 0.075,\n        autoRaf: true,\n        orientation: 'vertical',\n        gestureOrientation: 'vertical',\n      }}\n    >\n      {children}\n    </ReactLenis>\n  )\n}\n"],"names":[],"mappings":";;;;;AAEA;AAFA;;;AASO,SAAS,qBAAqB,EAAE,QAAQ,EAA6B;IAC1E,qBACE,6LAAC,iKAAU;QACT,IAAI;QACJ,SAAS;YACP,UAAU;YACV,QAAQ,CAAC,IAAM,KAAK,GAAG,CAAC,GAAG,QAAQ,KAAK,GAAG,CAAC,GAAG,CAAC,KAAK;YACrD,aAAa;YACb,iBAAiB;YACjB,UAAU;YACV,iBAAiB;YACjB,MAAM;YACN,WAAW;YACX,eAAe;YACf,SAAS;YACT,aAAa;YACb,oBAAoB;QACtB;kBAEC;;;;;;AAGP;KAtBgB"}}]
+}

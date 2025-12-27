@@ -1,8 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display, Bungee } from "next/font/google"
+import { Inter, Playfair_Display, Bungee, Montserrat, Open_Sans, Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider"
+import { Header } from "@/components/header"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
@@ -11,6 +11,21 @@ const bungee = Bungee({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-surfer",
+})
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-montserrat",
+})
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-open-sans",
+})
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-poppins",
 })
 
 export const metadata: Metadata = {
@@ -44,10 +59,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} ${bungee.variable} font-sans antialiased`}>
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
+      <body className={`${inter.variable} ${playfair.variable} ${bungee.variable} ${montserrat.variable} ${openSans.variable} ${poppins.variable} font-sans antialiased`}>
+        <Header />
+        {children}
         <Analytics />
       </body>
     </html>
